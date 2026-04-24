@@ -19,8 +19,11 @@ Good questions probe one of:
 - **Hidden constraint** — "Is this for the public API or internal use? That changes everything."
 - **Hidden alternative** — "Before choosing between A and B — is there a version where neither is needed?"
 - **Hidden motivation** — "What happens if you don't solve this at all this quarter?"
+- **Hidden solution** — "You've named *pagination* as the thing to improve. Strip that word — what's the user-visible symptom you're trying to fix?"
 
 Each question asks the user to commit to a specific framing or reveal that their original framing was imprecise.
+
+**Forcing rule for hidden-solution probes.** When the user's `/creative` input contains a concrete noun naming an existing system, component, or approach (pagination, cache, middleware, pipeline, auth system), at least one probe must test whether that noun is the actual problem or a solution baked into the framing. This is the highest-leverage probe the skill has — it's the move that converts "how can we design a better umbrella" into "how might we keep people dry as they move through the city."
 
 ## 3. Exit conditions
 
@@ -36,7 +39,7 @@ Sharpen exits when one of these is true:
 
 v1's Phase 1 produced a JSON blob with `problem_statement`, `constraints`, `success_criteria`, `domain`, `tags`, `exploration_budget`, `context_summary`, `known_attempts`. Don't.
 
-The JSON brief is a form, not a conversation. It gives the illusion of rigor without sharpening anything. A refined problem statement is one sentence. No taxonomy fields.
+The JSON brief is a form, not a conversation. It gives the illusion of rigor without sharpening anything. A refined open question is one sentence. No taxonomy fields.
 
 ### 4.2 The consultant question
 
@@ -107,7 +110,7 @@ The Sharpen section of `SKILL.md` should put the model into this stance. See `08
 
 **User:** "Security audit flagged token rotation."
 
-**Skill:** "Then the reframed problem is: how do we add token rotation to the existing auth system with minimum disruption — not 'how do we restructure auth.' Agreed?"
+**Skill:** "Then the open question is: **How might we add token rotation to the existing auth system with minimum disruption?** — not 'how do we restructure auth.' Agreed?"
 
 **User:** "Yes, that's it."
 
@@ -115,9 +118,13 @@ The Sharpen section of `SKILL.md` should put the model into this stance. See `08
 
 ## 8. What goes into Scout from Sharpen
 
-The output of Sharpen is one sentence: the confirmed refined problem statement.
+The output of Sharpen is **one open question** — the confirmed refined question, always phrased as a question ("How might we …?", "What would it take to …?", "When should we …?"). Never a declarative statement.
 
-That sentence is the input to Scout. Nothing else. No constraints list, no success criteria, no tags. The next gear reads fresh off a clear statement.
+That question is the input to Scout. Nothing else. No constraints list, no success criteria, no tags. The next gear reads fresh off a clear open question.
+
+**Why an open question, not a statement.** A declarative framing closes the search (flashlight); an open question creates the cognitive vacuum Scout's three lenses need to fill (floodlight). If the cleanest framing you can produce is declarative ("protect the API from burst traffic"), convert it ("how might we protect the API from burst traffic without rejecting legitimate users during known spikes?") — the clause that turns the goal into a question usually names the real tension anyway.
+
+The open question must name at least one tension the user endorsed during pushback rounds, not merely restate the original goal. "How might we improve pagination?" is not a sharpened question; it's a ceremonial rewrite. "How might we keep cursors stable under concurrent writes without breaking existing callers?" is.
 
 Anything the user mentioned in Sharpen that's still relevant stays in the conversation context — the main thread doesn't lose it.
 

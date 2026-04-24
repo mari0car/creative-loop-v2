@@ -22,7 +22,7 @@ Three framings that all optimize the same axis aren't three framings; they're on
 
 ### 2.1 Sourcing the three
 
-For each problem, pick three from these lenses. Not all four — pick the three most productive for this specific problem:
+For each problem, pick three from these lenses. Not all five — pick the three most productive for this specific problem:
 
 | Lens | The question it asks |
 |---|---|
@@ -30,8 +30,11 @@ For each problem, pick three from these lenses. Not all four — pick the three 
 | **Analogical import** | Where has this exact problem been solved elsewhere, and what does that solution look like ported here? |
 | **Constraint inversion** | What if we removed the hardest constraint — what becomes possible? |
 | **Minimalist cut** | What's the smallest version that could plausibly work? |
+| **Requirement reframe** | If we strip the object-noun from the question and solve the underlying need, what becomes thinkable? (umbrella → "keep people dry in the city") |
 
 "Conventional strong" should almost always be one of the three. The user often picks it and that's fine — it means they needed to see it framed next to the alternatives to commit.
+
+**Forcing rule for Requirement reframe.** If the sharpened question names a specific solution-noun (pagination, cache, middleware, pipeline, auth), one of the three framings *must* be a Requirement reframe. The reframe must change what solutions are thinkable, not merely rename the existing one — "don't call it pagination, call it result windowing" is wordplay, not reframing. Constraint inversion is adjacent but different: constraint inversion keeps the object and removes a limit; Requirement reframe replaces the object.
 
 ## 3. Output format
 
@@ -47,6 +50,8 @@ No scores. No novelty claims. No risks list. No confidence. No persona attributi
 ### 3.1 Template
 
 ```markdown
+Refined question: [the open question from Sharpen, verbatim]
+
 Three angles. Pick the one that pulls at you — or tell me none of them and I'll cut again.
 
 **1. [Name]**
@@ -63,6 +68,8 @@ Three angles. Pick the one that pulls at you — or tell me none of them and I'l
 Which one?
 ```
 
+The echoed question keeps the user anchored to what they're choosing *for*. One line, verbatim, no header formatting or flourishes.
+
 ## 4. What Scout does not do
 
 - **No composite score.** No numbers at all.
@@ -75,7 +82,7 @@ Which one?
 
 The Scout section of `SKILL.md` (see `08-skill-file.md`) instructs the model to produce the three framings in a single output. The model:
 
-1. Reads the refined problem statement from Sharpen.
+1. Reads the refined open question from Sharpen.
 2. Picks three lenses from §2.1.
 3. Generates the four lines (name / core / wins / refuses) for each.
 4. Delivers in the §3 template.
@@ -120,9 +127,11 @@ If the user says "#1 and #3 together," proceed. But:
 
 ### 10.1 Rate limiting
 
-Refined problem (from Sharpen): *"Protect the API from burst traffic without rejecting legitimate users during known spikes like cron fires."*
+Refined question (from Sharpen): *"How might we protect the API from burst traffic without rejecting legitimate users during known spikes like cron fires?"*
 
 ```
+Refined question: How might we protect the API from burst traffic without rejecting legitimate users during known spikes like cron fires?
+
 Three angles. Pick the one that pulls at you — or tell me none of them and I'll cut again.
 
 **1. Sliding window counter**
@@ -145,9 +154,11 @@ Which one?
 
 ### 10.2 Naming a module
 
-Refined problem: *"Name the module that converts internal event types into webhook payloads for external subscribers."*
+Refined question: *"What should we name the module that converts internal event types into webhook payloads for external subscribers?"*
 
 ```
+Refined question: What should we name the module that converts internal event types into webhook payloads for external subscribers?
+
 Three angles.
 
 **1. Domain-literal: `webhook-emitter`**

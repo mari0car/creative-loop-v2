@@ -31,7 +31,7 @@ From 01-philosophy.md §1.3: cumulative reasoning matters. Each step needs to bu
 
 Concretely:
 
-- Sharpen surfaces what the user actually means. Scout must use that surfaced framing, not the original statement.
+- Sharpen surfaces what the user actually means, phrased as an open question. Scout must use that surfaced question, not the original statement.
 - Scout produces three options. Wrestle must engage with one *and* remember the other two as the counter-examples it's being chosen over.
 - Sub-agents can't see each other; the main thread can. Use that.
 
@@ -43,7 +43,7 @@ This also collapses the v1 meta-controller (which v1 itself described as "the ma
 
 | Gear | Input | Output | Exit condition |
 |---|---|---|---|
-| **Sharpen** | Raw user request + relevant project context | A refined problem statement the user confirms, or a resolved question | User confirms framing *or* says "that's actually the answer" |
+| **Sharpen** | Raw user request + relevant project context | A refined open question the user confirms, or a resolved question | User confirms framing *or* says "that's actually the answer" |
 | **Scout** | Refined problem statement | Three distinct framings of an approach, each 3–5 sentences, no scores | User picks one, asks for one more round, or exits |
 | **Wrestle** | One chosen framing + the two rejected as context | A structured deep-dive: mechanism, steelman, attack, variants, killer-question | User has what they need, or re-enters Sharpen with new info |
 
@@ -63,7 +63,7 @@ We deliberately do not have:
 ## 4. Data flow
 
 ```
-user input ──► Sharpen prompt stance ──► refined problem (confirmed by user)
+user input ──► Sharpen prompt stance ──► refined open question (confirmed by user)
                                                   │
                                                   ▼
                            ┌───────────────────────┐
@@ -106,7 +106,7 @@ A user who has already finished a session can re-enter any gear directly:
 
 - `/creative <problem>` — full flow, starts at Sharpen
 - `/creative sharpen <problem>` — Sharpen only
-- `/creative scout <refined problem>` — Scout only
+- `/creative scout <refined question>` — Scout only
 - `/creative wrestle <idea>` — Wrestle only (useful when user has their own idea)
 
 These are not separate "quick modes" like v1 — they're just entry points to the same three gears.

@@ -28,7 +28,7 @@ The standard path. User brings a half-formed design question, gets sharpened, se
 
 1. Skill asks a Sharpen question (e.g., "what's the forcing function — DoS protection, fairness across tenants, or something else?").
 2. User provides specifics (e.g., "bursty traffic from cron-fires").
-3. Skill proposes a refined problem statement; user confirms.
+3. Skill proposes a refined open question ("How might we ...?"); user confirms.
 4. Skill produces three framings in the exact Scout format.
 5. User picks one (e.g., "#2, token bucket").
 6. Skill delivers Mechanism, ends with the "attack/steelman/variants?" question.

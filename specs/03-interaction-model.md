@@ -27,9 +27,9 @@ This posture applies across all three gears. If an output sounds like a consulta
 
 ### 3.1 Gate A — After Sharpen
 
-After one or more rounds of Socratic pushback, the skill produces a refined problem statement and says:
+After one or more rounds of Socratic pushback, the skill produces a refined **open question** (never a declarative statement) and says:
 
-> "Here's what I think you're actually asking: *[one-sentence reframed problem]*. Is that it, or am I off?"
+> "Here's the open question I think you're actually asking: ***How might we [X]?*** Is that it, or am I off?"
 
 Possible user responses and the right reaction:
 

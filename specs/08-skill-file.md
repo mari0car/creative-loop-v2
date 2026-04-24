@@ -43,7 +43,7 @@ Re-read the Posture section every turn. It is the most important part of this sk
 
 - `/creative <problem>` — full flow (Sharpen → Scout → Wrestle)
 - `/creative sharpen <problem>` — Sharpen only
-- `/creative scout <refined problem>` — Scout only (skips Sharpen; use when you already know the question)
+- `/creative scout <refined question>` — Scout only (skips Sharpen; use when you already know the question)
 - `/creative wrestle <idea>` — Wrestle only (goes deep on an idea the user brought)
 - `/creative save` — save this session as a markdown transcript
 - `/creative note <text>` — append a line to creative-notes.md
@@ -78,8 +78,11 @@ The user's first message is almost always the wrong question, or the right quest
 - hidden constraint ("public API or internal? changes the answer")
 - hidden alternative ("is there a version where neither A nor B is needed?")
 - hidden motivation ("what happens if you don't solve this this quarter?")
+- hidden solution ("you've named *pagination* as the thing to improve — strip that word. What's the user-visible symptom you're trying to fix?")
 
 Make it binary or specific. Bad: "what are your constraints?" Good: "if the answer requires a breaking API change, does that kill it?"
+
+**When to use the hidden-solution probe.** When the user's `/creative` input contains a concrete noun naming an existing system, component, or approach, at least one probe must test whether that noun is the actual problem or a solution baked into the framing.
 
 **Reading context.** Silently read `CLAUDE.md` at project root if present, and any files the user named. Nothing else. No git log. No project tree walk.
 
@@ -91,9 +94,11 @@ Make it binary or specific. Bad: "what are your constraints?" Good: "if the answ
 
 **If the user demands "just generate ideas" before Sharpen is done.** Say: "One question first, otherwise I'll generate ideas for the wrong problem. [specific question]." Only comply on a second demand, and flag the risk in Scout output.
 
-**Output format at Sharpen exit.** One sentence, then one confirmation question:
+**Output format at Sharpen exit.** One open question, then one confirmation question:
 
-> "Here's what I think you're actually asking: [one-sentence reframed problem]. Is that it, or am I off?"
+> "Here's the open question I think you're actually asking: **How might we [X]?** Is that it, or am I off?"
+
+The reframed output is **always an open question** — starts with "How might we", "What", "When should we", or similar. Never a declarative statement. If the best framing you can produce is declarative, convert it. The open question must name at least one tension the user endorsed during pushback.
 
 No JSON. No "constraints/success criteria/domain/tags" template. One sentence.
 
@@ -101,22 +106,27 @@ No JSON. No "constraints/success criteria/domain/tags" template. One sentence.
 
 ## GEAR 2 — SCOUT
 
-Input: the one-sentence refined problem from Sharpen (or from user direct invocation).
+Input: the one-sentence refined open question from Sharpen (or from user direct invocation).
 
 Produce **three framings.** Not ranked — genuinely different angles. They must differ in what they emphasize and what they refuse to optimize for.
 
-**Lens pool.** Pick three from these four for each problem:
+**Lens pool.** Pick three from these five for each problem:
 
 - **Conventional strong** — the best version of the boring answer (almost always include)
 - **Analogical import** — where has this exact problem been solved elsewhere? port that solution
 - **Constraint inversion** — remove the hardest constraint; what becomes possible?
 - **Minimalist cut** — smallest version that could plausibly work
+- **Requirement reframe** — strip the object-noun from the question; solve the underlying need (umbrella → "keep people dry in the city")
+
+If the sharpened question names a specific solution-noun (pagination, cache, middleware, pipeline, auth), one of the three framings must be a Requirement reframe. The reframe must change what solutions are thinkable, not just rename the existing one.
 
 If the three come out looking similar, force one into Analogical import and one into Constraint inversion.
 
 **Output format — exactly this:**
 
 ```
+Refined question: [the open question from Sharpen, verbatim]
+
 Three angles. Pick the one that pulls at you — or tell me none of them and I'll cut again.
 
 **1. [Evocative name]**
@@ -177,7 +187,7 @@ End Mechanism with: **"Mechanism's clear. Attack, steelman, or variants?"**
 
 ## SAVE AND NOTES
 
-**/creative save** — write the current session as markdown to `./creative-sessions/YYYY-MM-DD-HHMM-<slug>.md`. Slug is a 2–4 word kebab-case distillation of the refined problem. Include the conversation content lightly formatted with `## Sharpen`, `## Scout`, `## Wrestle` headings. If the folder doesn't exist, create it. Tell the user the path. Nothing else.
+**/creative save** — write the current session as markdown to `./creative-sessions/YYYY-MM-DD-HHMM-<slug>.md`. Slug is a 2–4 word kebab-case distillation of the refined question. Include the conversation content lightly formatted with `## Sharpen`, `## Scout`, `## Wrestle` headings. If the folder doesn't exist, create it. Tell the user the path. Nothing else.
 
 **/creative note <text>** — append `- YYYY-MM-DD: <text>` to `./creative-notes.md` at project root, creating the file if absent. Confirm in one line.
 
@@ -191,7 +201,7 @@ Neither command is auto-invoked. Both require explicit user request.
 - Never produce numeric scores (0.0–1.0, 1–10, anything).
 - Never produce a ranked list of ideas. Scout numbers the three but they are not ranked.
 - Never produce more than three options in Scout.
-- Never proceed from Sharpen to Scout without a user-confirmed refined problem statement.
+- Never proceed from Sharpen to Scout without a user-confirmed refined open question.
 - Never proceed from Scout to Wrestle without a user-picked option.
 - Never dump mechanism + steelman + attack + variants + killer question in one turn.
 - Never read or write `.creative-loop/` — it does not exist in v2.

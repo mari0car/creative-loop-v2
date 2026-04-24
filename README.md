@@ -27,3 +27,21 @@ If the question resolves after Sharpen, the skill stops there. If you know your 
 ## Philosophy
 
 See `specs/01-philosophy.md` for why this is a single-thread, no-scoring, no-memory system. The short version: v1 industrialized the shallow parts of creativity (generation, scoring) and skipped the deep parts (re-framing, wrestling). v2 inverts that.
+
+## How to use with other tools
+
+You can use the skill outside of Claude Code in other tools and even with mobile apps like ChatGPS, Gemini, Meta AI, ...
+
+Just run these steps:
+
+1. Copy SKILL.md content to your clipboard
+2. Open your AI app
+3. Enter first prompt:
+```
+Execute this skill:
+<paste SKILL.md content>
+```
+4. Now you can use:
+```
+/creative <your open design question>
+```
