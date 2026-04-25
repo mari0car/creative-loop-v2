@@ -1,4 +1,4 @@
-# Creative Loop V2 — a sparring partner for open design questions
+# Creative Loop 2 — a sparring partner for open design questions
 
 Not a brainstorming machine. Not a ranked-idea generator. A small skill that sharpens the question, shows you three genuinely different angles, and then goes deep on the one you pick.
 
