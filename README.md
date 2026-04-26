@@ -32,7 +32,11 @@ See `specs/01-philosophy.md` for why this is a single-thread, no-scoring, no-mem
 
 You can use the skill outside of Claude Code in other tools and even with mobile apps like ChatGPS, Gemini, Meta AI, ...
 
-Just run these steps:
+Generic AI prompt:
+
+    Execute this skill: https://raw.githubusercontent.com/mari0car/creative-loop-2/refs/heads/main/SKILL.md
+
+If that did not work, try these steps:
 
 1. Copy SKILL.md content to your clipboard
 2. Open your AI app
