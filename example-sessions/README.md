@@ -1,6 +1,6 @@
 # Example Sessions
 
-Captures free-hand AI agent sessions using creative-loop skill without additional project files.
+Captures some ad-hoc AI sessions using creative-loop skill without additional project files.
 
 Each session includes the following metadata:
 
