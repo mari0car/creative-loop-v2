@@ -1,4 +1,4 @@
-# Creative Loop V2 — Specs
+# Creative Loop 2 — Specs
 
 A ground-up redesign of the `/creative` skill. Smaller, sharper, and built around a different theory of creativity than v1.
 
